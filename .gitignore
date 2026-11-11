@@ -1,0 +1,14 @@
+# clasp — credenciais e ID do projeto ficam fora do repositório
+.clasprc.json
+.clasp.json
+
+# planilhas e exports locais
+*.xlsx
+*.kmz
+*.csv
+
+# rascunho pessoal, fora do repositório
+POST_LINKEDIN.md
+
+.DS_Store
+Thumbs.db
