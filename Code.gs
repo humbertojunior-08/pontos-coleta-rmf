@@ -70,10 +70,11 @@ function addPoint(payload) {
   if (!payload || !checkPassword(payload.password)) {
     throw new Error('Senha inválida.');
   }
-  // Corta tamanho e impede que um texto começando com "=" vire fórmula.
+  // Corta tamanho e impede que o texto vire fórmula (regra da OWASP:
+  // tudo que começa com = + - @ vira texto puro com o apóstrofo na frente).
   const clean = function (v) {
     const s = String(v || '').trim().slice(0, 300);
-    return s.charAt(0) === '=' ? "'" + s : s;
+    return /^[=+\-@]/.test(s) ? "'" + s : s;
   };
   if (!clean(payload.municipio) || !clean(payload.bairro) || !clean(payload.nome) || !clean(payload.endereco)) {
     throw new Error('Campos obrigatórios faltando.');
